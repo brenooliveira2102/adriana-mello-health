@@ -21,7 +21,7 @@ const HeroSection = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header id="inicio" className="min-h-[85vh] flex flex-col bg-secondary">
+    <header id="inicio" className="min-h-[75vh] md:min-h-[85vh] flex flex-col bg-secondary">
       {/* Navigation Bar */}
       <nav className="w-full py-4 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -77,12 +77,12 @@ const HeroSection = () => {
       </nav>
 
       {/* Hero Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 md:py-8">
         <div className="section-container text-center">
           <motion.img
             src={logo}
             alt="Adriana Mello Biomédica - Saúde Integrativa"
-            className="h-36 md:h-44 lg:h-52 mx-auto mb-4"
+            className="h-24 md:h-40 lg:h-52 mx-auto mb-3 md:mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
@@ -90,7 +90,7 @@ const HeroSection = () => {
 
           {/* Brand Name */}
           <motion.h2
-            className="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary tracking-wider mb-1"
+            className="text-2xl md:text-4xl lg:text-5xl font-semibold text-primary tracking-wider mb-1"
             style={{ fontFamily: "var(--font-heading)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ const HeroSection = () => {
           </motion.h2>
 
           <motion.p
-            className="text-lg md:text-xl text-foreground/70 tracking-widest mb-8"
+            className="text-sm md:text-lg lg:text-xl text-foreground/70 tracking-widest mb-5 md:mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -109,7 +109,8 @@ const HeroSection = () => {
           </motion.p>
 
           <motion.h1
-            className="heading-primary mb-6 max-w-3xl mx-auto"
+            className="text-xl md:text-3xl lg:text-4xl font-semibold text-foreground leading-tight mb-4 md:mb-6 max-w-2xl mx-auto"
+            style={{ fontFamily: "var(--font-heading)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -118,7 +119,7 @@ const HeroSection = () => {
           </motion.h1>
 
           <motion.p
-            className="text-body max-w-2xl mx-auto mb-10"
+            className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto mb-6 md:mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -130,14 +131,14 @@ const HeroSection = () => {
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-cta"
+            className="inline-flex items-center gap-2 px-5 py-3 md:px-8 md:py-4 rounded-full font-medium transition-all duration-300 text-sm md:text-base bg-primary text-primary-foreground hover:scale-105"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            <WhatsAppIcon className="w-5 h-5" />
+            <WhatsAppIcon className="w-4 h-4 md:w-5 md:h-5" />
             Agendar Consulta
           </motion.a>
         </div>
