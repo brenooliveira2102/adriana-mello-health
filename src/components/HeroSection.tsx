@@ -36,23 +36,10 @@ const HeroSection = () => {
             <Instagram className="w-5 h-5 text-primary-foreground" />
           </a>
 
-          {/* Menu Right - Desktop */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-foreground/80 hover:text-primary font-medium transition-colors text-sm tracking-wide"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
+          {/* Menu Button - Both Mobile and Desktop */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden w-10 h-10 bg-primary rounded-full flex items-center justify-center"
+            className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:scale-110 transition-transform"
             aria-label="Menu"
           >
             {isMenuOpen ? (
@@ -63,14 +50,14 @@ const HeroSection = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Menu Dropdown - Both Mobile and Desktop */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden mt-4 bg-card rounded-xl shadow-lg overflow-hidden"
+              className="mt-4 bg-card rounded-xl shadow-lg overflow-hidden max-w-xs ml-auto"
             >
               <div className="flex flex-col p-4 gap-3">
                 {navLinks.map((link) => (
