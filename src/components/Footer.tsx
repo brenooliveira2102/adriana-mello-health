@@ -1,4 +1,4 @@
-import { Instagram, MapPin, Clock, Mail, Phone } from "lucide-react";
+import { Instagram, MapPin, Clock, Phone } from "lucide-react";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import logo from "@/assets/logo.png";
 
@@ -31,13 +31,6 @@ const Footer = () => {
               >
                 <WhatsAppIcon className="w-5 h-5" />
                 <span>+55 79 99646-3124</span>
-              </a>
-              <a
-                href="mailto:contato@adrianamello.com.br"
-                className="flex items-center gap-3 justify-center md:justify-start hover:text-primary-foreground/80 transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-                <span>contato@adrianamello.com.br</span>
               </a>
             </div>
 
