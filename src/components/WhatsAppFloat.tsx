@@ -1,5 +1,5 @@
-import { MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 const WHATSAPP_NUMBER = "5579996463124";
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -20,7 +20,7 @@ const WhatsAppFloat = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
-      <MessageCircle className="w-7 h-7" />
+      <WhatsAppIcon className="w-7 h-7" />
     </motion.a>
   );
 };

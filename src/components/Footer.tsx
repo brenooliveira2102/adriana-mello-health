@@ -1,4 +1,5 @@
-import { Instagram, MessageCircle, MapPin } from "lucide-react";
+import { Instagram, MapPin } from "lucide-react";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import logo from "@/assets/logo.png";
 
 const WHATSAPP_NUMBER = "5579996463124";
@@ -47,7 +48,7 @@ const Footer = () => {
               className="w-12 h-12 bg-success rounded-full flex items-center justify-center hover:scale-110 transition-transform"
               aria-label="WhatsApp"
             >
-              <MessageCircle className="w-6 h-6 text-success-foreground" />
+              <WhatsAppIcon className="w-6 h-6 text-success-foreground" />
             </a>
             <a
               href="https://www.instagram.com/biovida.estetica/"

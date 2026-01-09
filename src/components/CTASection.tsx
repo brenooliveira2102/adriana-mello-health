@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { MessageCircle } from "lucide-react";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 const WHATSAPP_NUMBER = "5579996463124";
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -41,7 +41,7 @@ const CTASection = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            <MessageCircle className="w-6 h-6" />
+            <WhatsAppIcon className="w-6 h-6" />
             Agendar Consulta pelo WhatsApp
           </motion.a>
         </motion.div>
