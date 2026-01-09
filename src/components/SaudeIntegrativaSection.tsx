@@ -28,6 +28,7 @@ const SaudeIntegrativaSection = () => {
 
   return (
     <section
+      id="saude-integrativa"
       ref={ref}
       className="section-padding bg-background"
       aria-labelledby="saude-integrativa-heading"

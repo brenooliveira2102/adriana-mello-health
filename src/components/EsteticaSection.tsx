@@ -7,7 +7,7 @@ const EsteticaSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="section-padding bg-secondary">
+    <section id="estetica" ref={ref} className="section-padding bg-secondary">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Estética Integrativa */}

@@ -54,10 +54,10 @@ const Footer = () => {
               href="https://www.instagram.com/biovida.estetica/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 bg-accent rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+              className="w-12 h-12 bg-primary-foreground/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
               aria-label="Instagram"
             >
-              <Instagram className="w-6 h-6 text-primary" />
+              <Instagram className="w-6 h-6 text-primary-foreground" />
             </a>
             <a
               href="https://share.google/1IFQdPvsYN8evGGXU"
