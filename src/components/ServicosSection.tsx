@@ -27,6 +27,7 @@ const ServicosSection = () => {
 
   return (
     <section
+      id="servicos"
       ref={ref}
       className="section-padding bg-background"
       aria-labelledby="servicos-heading"

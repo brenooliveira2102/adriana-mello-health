@@ -63,8 +63,8 @@ export default {
         },
       },
       fontFamily: {
-        heading: ['Playfair Display', 'serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['Cormorant Garamond', 'serif'],
+        body: ['Nunito Sans', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
