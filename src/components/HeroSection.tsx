@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Instagram } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import logo from "@/assets/logo.png";
+import heroBg from "@/assets/hero-bg.png";
 
 const WHATSAPP_NUMBER = "5579996463124";
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -56,15 +57,13 @@ const HeroSection = () => {
           >
             <nav className="w-full py-3 px-4 md:px-8 relative">
               <div className="max-w-7xl mx-auto flex items-center justify-between">
-                {/* Instagram Left */}
-                <a
-                  href="https://www.instagram.com/biovida.estetica/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-full flex items-center justify-center hover:scale-110 transition-transform"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
+                {/* Logo Left */}
+                <a href="#inicio" className="flex items-center">
+                  <img
+                    src={logo}
+                    alt="Adriana Mello"
+                    className="h-10 md:h-12 w-auto"
+                  />
                 </a>
 
                 {/* Brand Name Center */}
@@ -120,128 +119,128 @@ const HeroSection = () => {
         )}
       </AnimatePresence>
 
-      <header id="inicio" className="min-h-[75vh] md:min-h-[85vh] flex flex-col bg-secondary">
-      {/* Navigation Bar */}
-      <nav className="w-full py-4 px-4 md:px-8 relative">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Instagram Left */}
-          <a
-            href="https://www.instagram.com/biovida.estetica/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:scale-110 transition-transform"
-            aria-label="Instagram"
-          >
-            <Instagram className="w-5 h-5 text-primary-foreground" />
-          </a>
-
-          {/* Menu Button - Both Mobile and Desktop */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:scale-110 transition-transform"
-            aria-label="Menu"
-          >
-            {isMenuOpen ? (
-              <X className="w-5 h-5 text-primary-foreground" />
-            ) : (
-              <Menu className="w-5 h-5 text-primary-foreground" />
-            )}
-          </button>
+      <header
+        id="inicio"
+        className="min-h-[75vh] md:min-h-[85vh] flex flex-col relative overflow-hidden"
+      >
+        {/* Background Image with Overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/75 to-white/90" />
         </div>
 
-        {/* Floating Menu Dropdown */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="absolute top-full right-4 md:right-8 mt-2 bg-card rounded-xl shadow-lg overflow-hidden max-w-xs z-50"
+        {/* Navigation Bar */}
+        <nav className="w-full py-4 px-4 md:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            {/* Logo Left */}
+            <a href="#inicio" className="flex items-center">
+              <img
+                src={logo}
+                alt="Adriana Mello"
+                className="h-12 md:h-14 w-auto"
+              />
+            </a>
+
+            {/* Menu Button - Both Mobile and Desktop */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+              aria-label="Menu"
             >
-              <div className="flex flex-col p-4 gap-3">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-foreground/80 hover:text-primary font-medium py-2 px-4 rounded-lg hover:bg-muted transition-all"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+              {isMenuOpen ? (
+                <X className="w-5 h-5 text-primary-foreground" />
+              ) : (
+                <Menu className="w-5 h-5 text-primary-foreground" />
+              )}
+            </button>
+          </div>
 
-      {/* Hero Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 md:py-8">
-        <div className="section-container text-center">
-          <motion.img
-            src={logo}
-            alt="Adriana Mello Biomédica - Saúde Integrativa"
-            className="h-24 md:h-40 lg:h-52 mx-auto mb-3 md:mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-          />
+          {/* Floating Menu Dropdown */}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute top-full right-4 md:right-8 mt-2 bg-card rounded-xl shadow-lg overflow-hidden max-w-xs z-50"
+              >
+                <div className="flex flex-col p-4 gap-3">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-foreground/80 hover:text-primary font-medium py-2 px-4 rounded-lg hover:bg-muted transition-all"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </nav>
 
-          {/* Brand Name */}
-          <motion.h2
-            className="text-2xl md:text-4xl lg:text-5xl font-semibold text-primary tracking-wider mb-1"
-            style={{ fontFamily: "var(--font-heading)" }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            ADRIANA MELLO
-          </motion.h2>
+        {/* Hero Content */}
+        <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 md:py-8 relative z-10">
+          <div className="section-container text-center">
+            {/* Brand Name */}
+            <motion.h2
+              className="text-3xl md:text-5xl lg:text-6xl font-semibold text-primary tracking-wider mb-2"
+              style={{ fontFamily: "var(--font-heading)" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              ADRIANA MELLO
+            </motion.h2>
 
-          <motion.p
-            className="text-sm md:text-lg lg:text-xl text-foreground/70 tracking-widest mb-5 md:mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            Biomédica | Saúde Integrativa
-          </motion.p>
+            <motion.p
+              className="text-base md:text-xl lg:text-2xl text-foreground/80 tracking-widest mb-8 md:mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              Biomédica | Saúde Integrativa
+            </motion.p>
 
-          <motion.h1
-            className="text-xl md:text-3xl lg:text-4xl font-semibold text-foreground leading-tight mb-4 md:mb-6 max-w-2xl mx-auto"
-            style={{ fontFamily: "var(--font-heading)" }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Saúde Integrativa e Estética com foco na sua individualidade
-          </motion.h1>
+            <motion.h1
+              className="text-xl md:text-3xl lg:text-4xl font-semibold text-foreground leading-tight mb-4 md:mb-6 max-w-2xl mx-auto"
+              style={{ fontFamily: "var(--font-heading)" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Saúde Integrativa e Estética com foco na sua individualidade
+            </motion.h1>
 
-          <motion.p
-            className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto mb-6 md:mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            Tratamentos personalizados que cuidam do corpo, da mente e do equilíbrio celular
-          </motion.p>
+            <motion.p
+              className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto mb-6 md:mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              Tratamentos personalizados que cuidam do corpo, da mente e do equilíbrio celular
+            </motion.p>
 
-          <motion.a
-            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 md:px-8 md:py-4 rounded-full font-medium transition-all duration-300 text-sm md:text-base bg-primary text-primary-foreground hover:scale-105"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <WhatsAppIcon className="w-4 h-4 md:w-5 md:h-5" />
-            Agendar Consulta
-          </motion.a>
+            <motion.a
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 md:px-8 md:py-4 rounded-full font-medium transition-all duration-300 text-sm md:text-base bg-primary text-primary-foreground hover:scale-105 shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <WhatsAppIcon className="w-4 h-4 md:w-5 md:h-5" />
+              Agendar Consulta
+            </motion.a>
+          </div>
         </div>
-      </div>
       </header>
     </>
   );
