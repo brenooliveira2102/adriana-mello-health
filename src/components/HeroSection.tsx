@@ -54,7 +54,7 @@ const HeroSection = () => {
             transition={{ duration: 0.3 }}
             className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md shadow-md"
           >
-            <nav className="w-full py-3 px-4 md:px-8">
+            <nav className="w-full py-3 px-4 md:px-8 relative">
               <div className="max-w-7xl mx-auto flex items-center justify-between">
                 {/* Instagram Left */}
                 <a
@@ -91,14 +91,14 @@ const HeroSection = () => {
                 </button>
               </div>
 
-              {/* Menu Dropdown */}
+              {/* Floating Menu Dropdown */}
               <AnimatePresence>
                 {isMenuOpen && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="mt-3 bg-card rounded-xl shadow-lg overflow-hidden max-w-xs ml-auto"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute top-full right-4 md:right-8 mt-2 bg-card rounded-xl shadow-lg overflow-hidden max-w-xs z-50"
                   >
                     <div className="flex flex-col p-3 gap-2">
                       {navLinks.map((link) => (
@@ -122,7 +122,7 @@ const HeroSection = () => {
 
       <header id="inicio" className="min-h-[75vh] md:min-h-[85vh] flex flex-col bg-secondary">
       {/* Navigation Bar */}
-      <nav className="w-full py-4 px-4 md:px-8">
+      <nav className="w-full py-4 px-4 md:px-8 relative">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Instagram Left */}
           <a
@@ -149,14 +149,14 @@ const HeroSection = () => {
           </button>
         </div>
 
-        {/* Menu Dropdown - Both Mobile and Desktop */}
+        {/* Floating Menu Dropdown */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="mt-4 bg-card rounded-xl shadow-lg overflow-hidden max-w-xs ml-auto"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute top-full right-4 md:right-8 mt-2 bg-card rounded-xl shadow-lg overflow-hidden max-w-xs z-50"
             >
               <div className="flex flex-col p-4 gap-3">
                 {navLinks.map((link) => (
