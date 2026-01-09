@@ -2,6 +2,13 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ClipboardList, Scale, Sparkles } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const services = [
   {
@@ -48,7 +55,8 @@ const ServicosSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.article
               key={index}
@@ -66,6 +74,42 @@ const ServicosSection = () => {
               <p className="text-muted-foreground">{service.description}</p>
             </motion.article>
           ))}
+        </div>
+
+        {/* Mobile Carousel */}
+        <div className="md:hidden">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2">
+              {services.map((service, index) => (
+                <CarouselItem key={index} className="pl-2 basis-[85%]">
+                  <motion.article
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
+                    className="card-service text-center group h-full"
+                  >
+                    <div className="w-20 h-20 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <service.icon className="w-10 h-10 text-accent" />
+                    </div>
+                    <h3 className="font-heading font-semibold text-xl text-foreground mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground">{service.description}</p>
+                  </motion.article>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-2 mt-4">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>

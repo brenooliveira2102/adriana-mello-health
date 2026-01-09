@@ -4,6 +4,7 @@ import ReparacaoSection from "@/components/ReparacaoSection";
 import ServicosSection from "@/components/ServicosSection";
 import EsteticaSection from "@/components/EsteticaSection";
 import DisfuncoesSection from "@/components/DisfuncoesSection";
+import GoogleReviewsSection from "@/components/GoogleReviewsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -17,6 +18,7 @@ const Index = () => {
       <ServicosSection />
       <EsteticaSection />
       <DisfuncoesSection />
+      <GoogleReviewsSection />
       <CTASection />
       <Footer />
       <WhatsAppFloat />
