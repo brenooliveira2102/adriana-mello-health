@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import logo from "@/assets/logo.png";
 
 const WHATSAPP_NUMBER = "5579996463124";
@@ -9,12 +9,12 @@ const WHATSAPP_MESSAGE = encodeURIComponent(
 
 const HeroSection = () => {
   return (
-    <header className="min-h-screen flex flex-col items-center justify-center bg-secondary px-4 py-12">
+    <header className="min-h-[85vh] flex flex-col items-center justify-center bg-secondary px-4 py-8">
       <div className="section-container text-center">
         <motion.img
           src={logo}
           alt="Adriana Mello Biomédica - Saúde Integrativa"
-          className="h-40 md:h-56 lg:h-64 mx-auto mb-8"
+          className="h-48 md:h-64 lg:h-80 mx-auto mb-6"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
@@ -49,7 +49,7 @@ const HeroSection = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
         >
-          <MessageCircle className="w-5 h-5" />
+          <WhatsAppIcon className="w-5 h-5" />
           Agendar Consulta
         </motion.a>
       </div>
