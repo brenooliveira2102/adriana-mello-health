@@ -2,6 +2,13 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Atom, Activity, Shield, Zap } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const benefits = [
   { icon: Atom, title: "Equilíbrio Celular", text: "Restauração do funcionamento harmonioso das células" },
@@ -37,7 +44,8 @@ const ReparacaoSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Desktop Grid */}
+        <div className="hidden md:grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
@@ -55,6 +63,42 @@ const ReparacaoSection = () => {
               <p className="text-sm text-muted-foreground">{benefit.text}</p>
             </motion.div>
           ))}
+        </div>
+
+        {/* Mobile Carousel */}
+        <div className="md:hidden">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2">
+              {benefits.map((benefit, index) => (
+                <CarouselItem key={index} className="pl-2 basis-[85%]">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                    className="card-service text-center bg-background h-full"
+                  >
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <benefit.icon className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="font-heading font-semibold text-lg text-foreground mb-2">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">{benefit.text}</p>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-2 mt-4">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>
