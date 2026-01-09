@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Instagram } from "lucide-react";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
@@ -19,9 +19,96 @@ const navLinks = [
 
 const HeroSection = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header id="inicio" className="min-h-[75vh] md:min-h-[85vh] flex flex-col bg-secondary">
+    <>
+      {/* Sticky Header */}
+      <AnimatePresence>
+        {isScrolled && (
+          <motion.header
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md shadow-md"
+          >
+            <nav className="w-full py-3 px-4 md:px-8">
+              <div className="max-w-7xl mx-auto flex items-center justify-between">
+                {/* Instagram Left */}
+                <a
+                  href="https://www.instagram.com/biovida.estetica/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
+                </a>
+
+                {/* Brand Name Center */}
+                <div className="text-center flex-1 px-2">
+                  <p className="text-xs md:text-sm font-semibold text-primary tracking-wide" style={{ fontFamily: "var(--font-heading)" }}>
+                    ADRIANA MELLO
+                  </p>
+                  <p className="text-[10px] md:text-xs text-foreground/70 tracking-wider">
+                    Biomédica | Saúde Integrativa
+                  </p>
+                </div>
+
+                {/* Menu Button Right */}
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                  aria-label="Menu"
+                >
+                  {isMenuOpen ? (
+                    <X className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
+                  ) : (
+                    <Menu className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
+                  )}
+                </button>
+              </div>
+
+              {/* Menu Dropdown */}
+              <AnimatePresence>
+                {isMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-3 bg-card rounded-xl shadow-lg overflow-hidden max-w-xs ml-auto"
+                  >
+                    <div className="flex flex-col p-3 gap-2">
+                      {navLinks.map((link) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="text-foreground/80 hover:text-primary font-medium py-2 px-4 rounded-lg hover:bg-muted transition-all text-sm"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </nav>
+          </motion.header>
+        )}
+      </AnimatePresence>
+
+      <header id="inicio" className="min-h-[75vh] md:min-h-[85vh] flex flex-col bg-secondary">
       {/* Navigation Bar */}
       <nav className="w-full py-4 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -143,7 +230,8 @@ const HeroSection = () => {
           </motion.a>
         </div>
       </div>
-    </header>
+      </header>
+    </>
   );
 };
 
