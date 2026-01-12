@@ -8,8 +8,8 @@
   <meta name="keywords" content="Saúde Integrativa, Estética Integrativa, Biomédica, Estética Ortomolecular, Tratamentos Estéticos, Gerenciamento de Peso, Aracaju, Sergipe, BioVida" />
   <meta name="author" content="Adriana Mello Biomédica" />
   
-  <meta property="og:title" content="Adriana Mello Biomédica | Saúde Integrativa e Estética" />
-  <meta property="og:description" content="Conhecimento que orienta. Cuidado que acolhe. Agende sua consulta personalizada." />
+  <meta property="og:title" content="Adriana Mello | Saúde Integrativa e Estética" />
+  <meta property="og:description" content="Tratamentos personalizados que cuidam do corpo, da mente e do equilíbrio celular." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="logo.png" />
 
@@ -360,6 +360,27 @@
     .carousel-btn:hover { background: var(--muted); }
     .carousel-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     
+    /* Hide carousel buttons on mobile - use touch/drag instead */
+    @media (max-width: 767px) {
+      .carousel-controls { display: none; }
+      .carousel-container { 
+        overflow-x: auto; 
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .carousel-container::-webkit-scrollbar { display: none; }
+      .carousel-track {
+        transition: none;
+        transform: none !important;
+      }
+      .carousel-item {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+      }
+    }
+    
     /* Divider */
     .divider { width: 5rem; height: 4px; background: var(--accent); border-radius: 2px; margin: 0 auto 1.5rem; }
     
@@ -707,7 +728,7 @@
         <div class="fade-in-left" style="display: flex; flex-direction: column; gap: 1.5rem;">
           <p class="text-body">A consulta é um <strong style="color: var(--foreground);">atendimento individualizado</strong>. Através de uma escuta, avaliamos hábitos, rotina e possíveis desequilíbrios, estudando os exames laboratoriais e exames complementares a fim de construir um plano de cuidado.</p>
           <p class="text-body">Minha abordagem é na saúde integrativa. <strong style="color: var(--foreground);">Não olho sintomas isolados</strong>, avalio a história de vida, hábitos, alimentação, sono, emoções, exames e sinais corporais para entender o que está por trás dos desequilíbrios.</p>
-          <p class="text-body">A abordagem tradicional foca em um sintoma e na queixa imediata, buscando doença. <strong style="color: var(--foreground);">Minha abordagem busca o equilíbrio do organismo</strong>, focado na prevenção, evitando que pequenos desequilíbrios se tornem doenças.</p>
+          <p class="text-body">A abordagem tradicional foca em um sintoma e na queixa imediata, buscando doença. <strong style="color: var(--foreground);">Minha abordagem busca o equilíbrio do organismo</strong>, focado na prevenção, evitando que pequenas disfunções se tornem doenças.</p>
           <p class="text-body">Cada pessoa é única, vive momentos diferentes e responde de forma diferente aos tratamentos. <strong style="color: var(--foreground);">Não existem protocolos prontos</strong> — o atendimento é sempre personalizado.</p>
         </div>
         
