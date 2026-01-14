@@ -19,8 +19,14 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="canonical" href="https://adrianamello.com.br" />
+  
+  <!-- Preload critical images -->
+  <link rel="preload" as="image" href="hero.png" fetchpriority="high">
+  <link rel="preload" as="image" href="logoa.png">
   
   <style>
     /* Reset & Base */
@@ -90,14 +96,17 @@
       background: var(--card); 
       border-radius: 0.75rem; 
       padding: 1.25rem; 
-      transition: all 0.3s ease;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
       box-shadow: var(--shadow-card);
+      contain: layout style;
     }
     @media (min-width: 768px) { .card-service { padding: 1.5rem; } }
     @media (min-width: 1024px) { .card-service { padding: 2rem; } }
-    .card-service:hover { 
-      box-shadow: var(--shadow-elevated); 
-      transform: translateY(-4px);
+    @media (hover: hover) {
+      .card-service:hover { 
+        box-shadow: var(--shadow-elevated); 
+        transform: translateY(-4px);
+      }
     }
     
     /* Buttons */
@@ -148,6 +157,10 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
+    /* Critical font fallback */
+    .font-loading body { font-family: system-ui, -apple-system, sans-serif; }
+    .font-loading h1, .font-loading h2, .font-loading h3 { font-family: Georgia, serif; }
     
     /* Sticky Header */
     .sticky-header {
@@ -229,6 +242,8 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      background-image: url('hero.png');
+      content-visibility: auto;
     }
     .hero-overlay {
       position: absolute;
@@ -473,12 +488,17 @@
       color: rgba(255, 255, 255, 0.6);
     }
     
-    /* Animations */
-    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+    /* Animations - optimized with will-change and reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in, .fade-in-left, .fade-in-right { opacity: 1; transform: none; transition: none; }
+      .hero-brand, .hero-subtitle, .hero-title, .hero-desc, .hero-cta { animation: none; opacity: 1; transform: none; }
+      .whatsapp-float { animation: none; }
+    }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.4s ease, transform 0.4s ease; will-change: opacity, transform; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .fade-in-left { opacity: 0; transform: translateX(-30px); transition: all 0.6s ease; }
+    .fade-in-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.4s ease, transform 0.4s ease; will-change: opacity, transform; }
     .fade-in-left.visible { opacity: 1; transform: translateX(0); }
-    .fade-in-right { opacity: 0; transform: translateX(30px); transition: all 0.6s ease; }
+    .fade-in-right { opacity: 0; transform: translateX(30px); transition: opacity 0.4s ease, transform 0.4s ease; will-change: opacity, transform; }
     .fade-in-right.visible { opacity: 1; transform: translateX(0); }
     
     /* Mobile Carousel Only */
@@ -634,7 +654,7 @@
 
   <!-- Hero Section -->
   <header class="hero" id="inicio">
-    <div class="hero-bg" style="background-image: url('hero.png');"></div>
+    <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     
     <nav class="hero-nav">
@@ -683,7 +703,7 @@
       </div>
       
       <div class="about-doctor fade-in">
-        <img src="dra-adriana-mello.jpg" alt="Dra. Adriana Mello - Biomédica especialista em Saúde Integrativa" class="about-doctor-image">
+        <img src="dra-adriana-mello.jpg" alt="Dra. Adriana Mello - Biomédica especialista em Saúde Integrativa" class="about-doctor-image" loading="lazy" decoding="async" width="380" height="450">
         
         <div class="about-doctor-content">
           <div class="about-doctor-quote">
@@ -1302,8 +1322,11 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             08:00 às 18:00 Horas
           </div>
-          <div style="border-radius: 0.5rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.5101586204187!2d-37.0657113257847!3d-10.92478302202491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71ab3a25cc992b7%3A0x18d854e9c9af847f!2sBioVida%20-%20N%C3%BAcleos%20Diagn%C3%B3stico%20e%20Est%C3%A9tico!5e0!3m2!1spt-BR!2sbr!4v1767970413880!5m2!1spt-BR!2sbr" width="100%" height="180" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização BioVida"></iframe>
+          <div id="map-container" style="border-radius: 0.5rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); min-height: 180px; background: #e5e5e5;">
+            <a href="https://www.google.com/maps/place/BioVida+-+N%C3%BAcleos+Diagn%C3%B3stico+e+Est%C3%A9tico/@-10.9247830,-37.0657113,17z" target="_blank" rel="noopener noreferrer" id="map-placeholder" style="display: flex; align-items: center; justify-content: center; height: 180px; color: var(--primary); text-decoration: none; flex-direction: column; gap: 0.5rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span style="font-size: 0.875rem;">Clique para ver no mapa</span>
+            </a>
           </div>
         </div>
         
@@ -1344,6 +1367,29 @@
   <script>
     // Current year
     document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Lazy load Google Maps on interaction
+    const mapContainer = document.getElementById('map-container');
+    const mapPlaceholder = document.getElementById('map-placeholder');
+    let mapLoaded = false;
+    
+    function loadMap() {
+      if (mapLoaded) return;
+      mapLoaded = true;
+      mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.5101586204187!2d-37.0657113257847!3d-10.92478302202491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71ab3a25cc992b7%3A0x18d854e9c9af847f!2sBioVida%20-%20N%C3%BAcleos%20Diagn%C3%B3stico%20e%20Est%C3%A9tico!5e0!3m2!1spt-BR!2sbr!4v1767970413880!5m2!1spt-BR!2sbr" width="100%" height="180" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização BioVida"></iframe>';
+    }
+    
+    mapContainer.addEventListener('click', loadMap);
+    mapContainer.addEventListener('mouseenter', loadMap);
+    
+    // Load map when footer is visible
+    const mapObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        loadMap();
+        mapObserver.disconnect();
+      }
+    }, { rootMargin: '200px' });
+    mapObserver.observe(mapContainer);
     
     // Sticky header
     const stickyHeader = document.getElementById('sticky-header');
